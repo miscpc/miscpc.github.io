@@ -3,644 +3,725 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Evan Hopkins — Senior IT Consultant & AI Solutions Specialist</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Evan Hopkins — Infographic CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy:     #14213d;
-    --navy-mid: #1d3461;
-    --accent:   #e63946;
-    --blue:     #1d4e89;
-    --blue-lt:  #2e6cb8;
-    --light:    #f4f6fb;
-    --rule:     #d0d5e8;
-    --text:     #1e1e2e;
-    --sub:      #3a3a5c;
-    --mid:      #6b7280;
-    --white:    #ffffff;
-    --tag-bg:   #edf2fb;
-    --tag-txt:  #1d4e89;
-  }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --navy:    #0B1F3A;
+    --navy2:   #112B50;
+    --blue:    #1A56B0;
+    --cyan:    #00C2E0;
+    --gold:    #E8B84B;
+    --light:   #EDF3FB;
+    --white:   #FFFFFF;
+    --gray:    #8EA8C3;
+    --line:    rgba(0,194,224,0.18);
+    --glow:    rgba(0,194,224,0.35);
+  }
+
+  html { font-size: 15px; }
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: #e8ecf4;
-    color: var(--text);
-    line-height: 1.5;
-    min-height: 100vh;
-    padding: 32px 16px 64px;
-  }
-
-  /* ── Page shell ── */
-  .page {
-    max-width: 900px;
-    margin: 0 auto;
-    background: var(--white);
-    box-shadow: 0 4px 40px rgba(20,33,61,0.18), 0 1px 4px rgba(20,33,61,0.08);
-    border-radius: 2px;
-    overflow: hidden;
-    animation: rise 0.5s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── Header ── */
-  .hdr {
     background: var(--navy);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0;
-    position: relative;
-    overflow: hidden;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.55;
+    min-height: 100vh;
   }
 
-  .hdr::before {
+  /* ── CIRCUIT BACKGROUND ── */
+  body::before {
     content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 0% 0%, rgba(30,70,140,0.35) 0%, transparent 60%),
-                radial-gradient(ellipse at 100% 100%, rgba(230,57,70,0.12) 0%, transparent 50%);
+    position: fixed; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 70% 60% at 15% 20%, rgba(26,86,176,0.22) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 85% 80%, rgba(0,194,224,0.12) 0%, transparent 60%);
     pointer-events: none;
   }
 
-  .hdr-name-block {
-    padding: 32px 28px 32px 36px;
-    border-right: 2px solid var(--accent);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-  }
+  .page { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
 
-  .hdr-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.6rem;
-    color: var(--white);
-    line-height: 1.05;
-    letter-spacing: -0.5px;
-  }
-
-  .hdr-info {
-    padding: 28px 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hdr-title {
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: #c8d4f0;
-    letter-spacing: 0.01em;
-  }
-
-  .hdr-title-sub {
-    font-size: 0.92rem;
-    font-weight: 400;
-    color: #9aadd4;
-    margin-top: 1px;
-  }
-
-  .hdr-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-    margin-top: 10px;
-  }
-
-  .hdr-meta span {
-    font-size: 0.78rem;
-    color: #8fa8d0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .hdr-meta a {
-    color: #8fa8d0;
-    text-decoration: none;
-  }
-  .hdr-meta a:hover { color: #c8d4f0; }
-
-  /* ── Stats bar ── */
-  .stats {
+  /* ── HEADER ── */
+  .hero {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    background: var(--light);
-    border-bottom: 1px solid var(--rule);
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 40px;
+    padding: 64px 0 40px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 220px; height: 3px;
+    background: linear-gradient(90deg, var(--cyan), transparent);
   }
 
-  .stat {
-    padding: 10px 4px;
-    text-align: center;
-    border-right: 1px solid var(--rule);
-    animation: rise 0.5s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  .stat:last-child { border-right: none; }
-
-  .stat-n {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.35rem;
-    color: var(--accent);
+  .hero-name {
+    font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
     line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--white);
   }
-
-  .stat-l {
-    font-size: 0.62rem;
-    color: var(--mid);
+  .hero-name span {
+    display: block;
+    color: var(--cyan);
+    font-size: 0.38em;
+    font-weight: 600;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-top: 2px;
-  }
-
-  /* ── Body layout ── */
-  .body {
-    padding: 24px 36px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  /* ── Section heading ── */
-  .sec-head {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.66rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    padding-bottom: 5px;
-    border-bottom: 1.5px solid var(--accent);
     margin-bottom: 10px;
   }
 
-  /* ── Profile ── */
-  .profile p {
-    font-size: 0.875rem;
-    color: var(--sub);
-    line-height: 1.65;
+  .hero-tag {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-top: 14px;
+    font-weight: 300;
+    letter-spacing: 0.01em;
   }
+  .hero-tag strong { color: var(--gold); font-weight: 500; }
 
-  .profile p strong { color: var(--navy); }
-
-  /* ── Competencies grid ── */
-  .comp-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .comp-cell {
-    background: var(--light);
-    padding: 9px 13px;
-  }
-
-  .comp-cell:hover { background: #eaf0fb; transition: background 0.15s; }
-
-  .comp-cell-title {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--blue);
-    margin-bottom: 3px;
-  }
-
-  .comp-cell-body {
+  .hero-contact {
+    text-align: right;
+    font-family: 'Space Mono', monospace;
     font-size: 0.72rem;
-    color: var(--sub);
-    line-height: 1.5;
+    color: var(--gray);
+    line-height: 2;
+  }
+  .hero-contact a { color: var(--cyan); text-decoration: none; }
+
+  /* ── SECTION LABEL ── */
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 52px 0 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+  .sec-label .num { color: var(--gold); margin-right: 4px; }
+
+  /* ── SUMMARY PANEL ── */
+  .summary-panel {
+    background: rgba(26,86,176,0.1);
+    border: 1px solid rgba(0,194,224,0.2);
+    border-left: 3px solid var(--cyan);
+    border-radius: 2px;
+    padding: 22px 26px;
+    font-size: 0.92rem;
+    color: #C8DAEE;
+    font-weight: 300;
+    line-height: 1.75;
   }
 
-  /* ── Experience ── */
-  .jobs { display: flex; flex-direction: column; gap: 13px; }
+  /* ── MAIN LAYOUT ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    align-items: start;
+  }
 
-  .job { padding-bottom: 13px; border-bottom: 1px solid var(--rule); }
-  .job:last-child { border-bottom: none; padding-bottom: 0; }
+  /* ── EXPERIENCE TIMELINE ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--cyan), transparent);
+  }
 
-  .job-header {
+  .tl-item { position: relative; margin-bottom: 34px; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -32px; top: 7px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(0,194,224,0.2), 0 0 12px var(--glow);
+  }
+
+  .tl-role {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .tl-company {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
+    align-items: center;
+    gap: 10px;
+    margin: 4px 0 8px;
     flex-wrap: wrap;
   }
-
-  .job-title {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--navy);
+  .tl-company-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.05em;
   }
-
-  .job-period {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--mid);
+  .tl-date {
+    font-size: 0.72rem;
+    color: var(--gray);
+    font-family: 'Space Mono', monospace;
     white-space: nowrap;
   }
-
-  .job-company {
-    font-size: 0.75rem;
-    color: var(--mid);
-    font-style: italic;
-    margin: 1px 0 6px;
+  .tl-loc {
+    font-size: 0.72rem;
+    color: var(--gray);
+    font-family: 'Space Mono', monospace;
   }
+  .tl-dot { color: var(--line); }
 
-  .job-bullets {
+  .tl-bullets {
     list-style: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 3px;
   }
-
-  .job-bullets li {
-    font-size: 0.78rem;
-    color: var(--sub);
-    line-height: 1.5;
-    padding-left: 13px;
+  .tl-bullets li {
+    font-size: 0.82rem;
+    color: #A8C0D8;
+    padding-left: 14px;
     position: relative;
+    font-weight: 300;
   }
-
-  .job-bullets li::before {
-    content: '›';
+  .tl-bullets li::before {
+    content: '▸';
     position: absolute;
     left: 0;
-    color: var(--accent);
-    font-weight: 700;
-    line-height: 1.5;
+    color: var(--cyan);
+    font-size: 0.65rem;
+    top: 3px;
+  }
+  .tl-bullets li.sub { padding-left: 28px; color: #7A9BB8; font-size: 0.78rem; }
+  .tl-bullets li.sub::before { content: '·'; left: 14px; font-size: 1rem; top: -1px; }
+
+  /* ── RIGHT SIDEBAR ── */
+  .sidebar { display: flex; flex-direction: column; gap: 0; }
+
+  /* SKILLS GRID */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .skill-chip {
+    background: rgba(26,86,176,0.15);
+    border: 1px solid rgba(0,194,224,0.18);
+    border-radius: 2px;
+    padding: 6px 9px;
+    font-size: 0.72rem;
+    color: #B8D0E8;
+    font-family: 'Space Mono', monospace;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .skill-chip::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--cyan);
+    flex-shrink: 0;
+    box-shadow: 0 0 6px var(--glow);
+  }
+  .skill-chip:hover {
+    border-color: var(--cyan);
+    color: var(--white);
+    background: rgba(0,194,224,0.08);
   }
 
-  .job-bullets li strong { color: var(--navy); }
+  /* STAT BOXES */
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+  .stat-box {
+    background: rgba(232,184,75,0.07);
+    border: 1px solid rgba(232,184,75,0.25);
+    border-radius: 2px;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    color: var(--gray);
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
 
-  /* ── Skills grid ── */
-  .skills-grid {
+  /* LANGUAGES */
+  .lang-row {
     display: flex;
     flex-direction: column;
-    gap: 1px;
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    overflow: hidden;
+    gap: 10px;
   }
-
-  .skill-row {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    background: var(--light);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .skill-row:last-child { border-bottom: none; }
-  .skill-row:hover { background: #eaf0fb; transition: background 0.15s; }
-
-  .skill-cat {
-    padding: 5px 10px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--blue);
-    border-right: 1px solid var(--rule);
+  .lang-item { display: flex; flex-direction: column; gap: 4px; }
+  .lang-top {
     display: flex;
-    align-items: center;
-  }
-
-  .skill-val {
-    padding: 5px 10px;
-    font-size: 0.71rem;
-    color: var(--sub);
-    line-height: 1.5;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  /* ── Tags (inline dots) ── */
-  .skill-val .dot { color: var(--accent); margin: 0 3px; }
-
-  /* ── Bottom 3-col ── */
-  .bottom-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .bottom-col {
-    background: var(--light);
-    padding: 12px 14px;
-  }
-
-  .bottom-col-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent);
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--white);
     font-weight: 500;
-    padding-bottom: 5px;
-    border-bottom: 1px solid var(--accent);
-    margin-bottom: 7px;
+  }
+  .lang-level { font-size: 0.68rem; color: var(--gray); font-family: 'Space Mono', monospace; }
+  .lang-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .lang-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    animation: fillBar 1.2s ease-out forwards;
+    transform-origin: left;
+  }
+  @keyframes fillBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  /* TECH RADAR — horizontal bar chart */
+  .radar-list { display: flex; flex-direction: column; gap: 8px; }
+  .radar-item { display: flex; flex-direction: column; gap: 3px; }
+  .radar-label {
+    font-size: 0.7rem;
+    color: var(--gray);
+    font-family: 'Space Mono', monospace;
+    display: flex;
+    justify-content: space-between;
+  }
+  .radar-label span { color: var(--cyan); }
+  .radar-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .radar-fill {
+    height: 100%;
+    border-radius: 2px;
+    animation: fillBar 1.4s ease-out forwards;
+    transform-origin: left;
+  }
+  .f-cyan  { background: linear-gradient(90deg, var(--cyan), rgba(0,194,224,0.4)); }
+  .f-blue  { background: linear-gradient(90deg, var(--blue), rgba(26,86,176,0.4)); }
+  .f-gold  { background: linear-gradient(90deg, var(--gold), rgba(232,184,75,0.4)); }
+
+  /* EDUCATION & PROJECTS */
+  .edu-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 16px;
+  }
+  .edu-school {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--white);
+  }
+  .edu-date {
+    font-size: 0.7rem;
+    color: var(--gray);
+    font-family: 'Space Mono', monospace;
+    margin-top: 3px;
+  }
+  .proj-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+  }
+  .proj-icon {
+    width: 32px; height: 32px;
+    background: rgba(0,194,224,0.12);
+    border: 1px solid rgba(0,194,224,0.3);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .proj-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--white);
+  }
+  .proj-sub { font-size: 0.72rem; color: var(--gray); font-family: 'Space Mono', monospace; }
+
+  /* ── FULL-WIDTH VERIFIED SKILLS ── */
+  .verified-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 7px;
   }
 
-  .bottom-col p {
-    font-size: 0.74rem;
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  .bottom-col p strong { color: var(--navy); }
-
-  /* ── Footer ── */
+  /* ── FOOTER ── */
   .footer {
-    background: var(--navy);
-    padding: 10px 36px;
-    text-align: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem;
-    color: #6a80a8;
-    letter-spacing: 0.04em;
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(142,168,195,0.5);
   }
 
-  /* ── Print ── */
+  /* ── ANIMATIONS ── */
+  .fade-in { animation: fadeUp 0.7s ease-out both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .tl-item:nth-child(1) { animation: fadeUp 0.5s 0.1s both; }
+  .tl-item:nth-child(2) { animation: fadeUp 0.5s 0.2s both; }
+  .tl-item:nth-child(3) { animation: fadeUp 0.5s 0.3s both; }
+  .tl-item:nth-child(4) { animation: fadeUp 0.5s 0.4s both; }
+  .tl-item:nth-child(5) { animation: fadeUp 0.5s 0.5s both; }
+  .tl-item:nth-child(6) { animation: fadeUp 0.5s 0.6s both; }
+  .tl-item:nth-child(7) { animation: fadeUp 0.5s 0.7s both; }
+  .tl-item:nth-child(8) { animation: fadeUp 0.5s 0.8s both; }
+
   @media print {
-    body { background: white; padding: 0; }
-    .page { box-shadow: none; border-radius: 0; }
-    .job:hover, .comp-cell:hover, .skill-row:hover { background: var(--light); }
+    body::before, body::after { display: none; }
+    .skill-chip, .stat-box, .edu-box, .proj-item { break-inside: avoid; }
   }
-
-  @media (max-width: 640px) {
-    .hdr { grid-template-columns: 1fr; }
-    .hdr-name-block { border-right: none; border-bottom: 2px solid var(--accent); padding: 24px 20px 20px; }
-    .hdr-name { font-size: 2rem; }
-    .stats { grid-template-columns: repeat(3, 1fr); }
-    .comp-grid { grid-template-columns: 1fr; }
-    .bottom-grid { grid-template-columns: 1fr; }
-    .body { padding: 18px 18px 24px; }
-    .skill-row { grid-template-columns: 120px 1fr; }
+  @media (max-width: 780px) {
+    .two-col { grid-template-columns: 1fr; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-contact { text-align: left; }
   }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- ══ HEADER ══════════════════════════════════════════════════════ -->
-  <header class="hdr">
-    <div class="hdr-name-block">
-      <div class="hdr-name">Evan<br>Hopkins</div>
-    </div>
-    <div class="hdr-info">
-      <div class="hdr-title">Senior IT Consultant &amp; Systems Architect</div>
-      <div class="hdr-title-sub">AI Solutions &amp; Integration Specialist</div>
-      <div class="hdr-meta">
-        <span>📍 Montreal, QC</span>
-        <span>🌐 Remote &amp; On-site</span>
-        <span>⏱ 20+ Years Experience</span>
-        <span><a href="https://linkedin.com/in/evan-hopkins-329237a3" target="_blank">🔗 LinkedIn</a></span>
+  <!-- ══ HERO ══ -->
+  <header class="hero fade-in">
+    <div>
+      <div class="hero-name">
+        <span>// IT Professional</span>
+        Evan Hopkins
       </div>
+      <p class="hero-tag">
+        <strong>20+ years</strong> · Systems Architecture · AI Integration · DevOps · Security · Cloud
+      </p>
+    </div>
+    <div class="hero-contact">
+      <div>📍 Montreal, Quebec, Canada</div>
+      <div><a href="/cdn-cgi/l/email-protection#f29f9b81918291b2959f939b9edc919d9f"><span class="__cf_email__" data-cfemail="2e43475d4d5e4d6e49434f4742004d4143">[email&#160;protected]</span></a></div>
+      <div><a href="https://linkedin.com/in/evan-hopkins-329237a3">linkedin.com/in/evan-hopkins-329237a3</a></div>
     </div>
   </header>
 
-  <!-- ══ STATS ════════════════════════════════════════════════════════ -->
-  <div class="stats">
-    <div class="stat"><div class="stat-n">20+</div><div class="stat-l">Years Exp</div></div>
-    <div class="stat"><div class="stat-n">13</div><div class="stat-l">Hypervisors</div></div>
-    <div class="stat"><div class="stat-n">80+</div><div class="stat-l">Skills</div></div>
-    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Languages</div></div>
-    <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Employers</div></div>
-    <div class="stat"><div class="stat-n">12</div><div class="stat-l">Methodologies</div></div>
+  <!-- ══ SUMMARY ══ -->
+  <div class="sec-label"><span class="num">01 /</span> Profile</div>
+  <div class="summary-panel fade-in">
+    Results-driven IT professional with 20+ years of hands-on experience navigating the full technology stack — from bare-metal infrastructure to cloud-native deployments and AI integration. Proven expertise in Linux/Windows system administration, AWS and Azure cloud platforms, network engineering, cybersecurity, and DevOps automation. In 2026, actively delivering AI-augmented solutions including LLM integration, intelligent workflow automation, and AI-assisted monitoring pipelines. Experienced team lead, trainer, and technical mentor with a track record of driving measurable operational improvements in agile, international environments. Open to Consultant, Senior Systems Administrator, and AI Integration Specialist engagements.
   </div>
 
-  <!-- ══ BODY ═════════════════════════════════════════════════════════ -->
-  <main class="body">
+  <!-- ══ STATS ROW ══ -->
+  <div class="stat-row fade-in" style="margin-top:28px;">
+    <div class="stat-box"><div class="stat-num">20+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat-box"><div class="stat-num">8</div><div class="stat-label">Employers</div></div>
+    <div class="stat-box"><div class="stat-num">36</div><div class="stat-label">Verified Skills</div></div>
+    <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Languages</div></div>
+  </div>
 
-    <!-- Profile -->
-    <section class="profile">
-      <div class="sec-head">Profile</div>
-      <p>
-        Senior IT Consultant &amp; AI Solutions Specialist with <strong>20+ years</strong> architecting and securing
-        enterprise infrastructure across Linux, Unix, Solaris, BSD, Fuchsia OS, HarmonyOS, and RTOS — with deep
-        hypervisor expertise spanning VMware ESXi/vSphere, Hyper-V, Citrix XenServer, KVM, Oracle VM, QEMU,
-        AWS Nitro, Google KVM, and Azure Hypervisor.
-        Trilingual (FR/EN/ES) team lead and technical mentor known for bridging legacy systems with modern
-        cloud and AI-native platforms. Open to Senior Consultant, Systems Architect, and AI Integration engagements.
-      </p>
-    </section>
+  <!-- ══ MAIN TWO-COL ══ -->
+  <div class="sec-label"><span class="num">02 /</span> Experience &amp; Expertise</div>
+  <div class="two-col">
 
-    <!-- Core Competencies -->
-    <section>
-      <div class="sec-head">Core Competencies</div>
-      <div class="comp-grid">
-        <div class="comp-cell">
-          <div class="comp-cell-title">🖥&nbsp; OS &amp; Infrastructure</div>
-          <div class="comp-cell-body">Linux · Unix · Solaris · BSD · Fuchsia OS · HarmonyOS · RTOS · Windows Server — bare-metal, HA, DR, capacity planning</div>
-        </div>
-        <div class="comp-cell">
-          <div class="comp-cell-title">☁&nbsp; Virtualization &amp; Cloud</div>
-          <div class="comp-cell-body">VMware ESXi/vSphere · Hyper-V · XenServer · KVM · Oracle VM · QEMU · AWS Nitro · Google KVM · Azure Hypervisor — Type 1 &amp; 2, hybrid cloud</div>
-        </div>
-        <div class="comp-cell">
-          <div class="comp-cell-title">🔐&nbsp; Security &amp; Compliance</div>
-          <div class="comp-cell-body">Pen testing · IDS/IPS · Firewall design · PCI DSS · ITIL · Six Sigma hardening</div>
-        </div>
-        <div class="comp-cell">
-          <div class="comp-cell-title">🤖&nbsp; AI &amp; Automation</div>
-          <div class="comp-cell-body">LLM integration · Intelligent monitoring · Workflow automation · Bash / Python / Perl / Ruby · DevOps orchestration</div>
-        </div>
-        <div class="comp-cell">
-          <div class="comp-cell-title">📡&nbsp; Networking &amp; VoIP</div>
-          <div class="comp-cell-body">Cisco · VPN · DNS · DMZ · BGP · VLAN · SIP · Asterisk · Trixbox · Freeswitch</div>
-        </div>
-        <div class="comp-cell">
-          <div class="comp-cell-title">⚙&nbsp; DevOps &amp; CI/CD</div>
-          <div class="comp-cell-body">Docker · Kubernetes · Terraform · Ansible · Puppet · Agile · Scrum · CI/CD pipelines</div>
-        </div>
-      </div>
-    </section>
+    <!-- LEFT: TIMELINE -->
+    <div>
+      <div class="timeline">
 
-    <!-- Experience -->
-    <section>
-      <div class="sec-head">Professional Experience</div>
-      <div class="jobs">
-
-        <div class="job">
-          <div class="job-header">
-            <div class="job-title">Senior IT Consultant &amp; AI Solutions &amp; Integration Specialist</div>
-            <div class="job-period">2011 – Present</div>
+        <div class="tl-item">
+          <div class="tl-role">Consultant</div>
+          <div class="tl-company">
+            <span class="tl-company-name">Ville de Montréal</span>
+            <span class="tl-dot">·</span>
+            <span class="tl-date">2011 – Present</span>
+            <span class="tl-dot">·</span>
+            <span class="tl-loc">Greater Montreal</span>
           </div>
-          <div class="job-company">Ville de Montréal · Greater Montreal, QC</div>
-          <ul class="job-bullets">
-            <li>Deployed LLM-assisted automation and intelligent monitoring pipelines, reducing manual triage time significantly</li>
-            <li>Deep OS expertise: Linux · Unix · Solaris · BSD · Fuchsia OS · HarmonyOS · RTOS · Windows 7/Server 2008 R2 through Windows 11/Server 2025</li>
-            <li>Hypervisor coverage: VMware ESXi/vSphere · Hyper-V · XenServer · KVM · Oracle VM · QEMU · AWS Nitro · Google KVM · Azure Hypervisor</li>
-            <li>Security: pen testing, intrusion analysis, multi-layer firewall architecture, PCI DSS, Six Sigma, ITIL</li>
-            <li>VoIP: SIP · Asterisk · Trixbox · Grandstream · Cisco · Freeswitch &nbsp;·&nbsp; Server infra: DNS · DMZ · DHCP · VPN · Apache · MySQL</li>
+          <ul class="tl-bullets">
+            <li>AI Integration Specialist — LLM-assisted automation &amp; intelligent monitoring pipelines</li>
+            <li>Windows (all versions post 3.1), Linux (Arch, Gentoo, Ubuntu, Fedora, CentOS, Debian), BSD &amp; UNIX variants</li>
+            <li>Security specialist — penetration testing, intrusion analysis and prevention</li>
+            <li>VOIP specialist — SIP, Asterisk, Trixbox, Grandstream, Cisco, Freeswitch</li>
+            <li>Automation — updates, rollbacks, deployments, remote assistance (Batch, Bash, Python, Perl, Ruby)</li>
+            <li>Server specialist — DNS, DMZ, DHCP, Citrix, VPN, Apache, MySQL</li>
+            <li>Workflow &amp; compliance — Six Sigma, ITIL, PCI, PCI DSS</li>
+            <li>Other projects:</li>
+            <li class="sub">Mobile (iPhone, BlackBerry) — Web (hosting, VoIP, file sharing, scripting)</li>
+            <li class="sub">Electronics (consoles, DJ booths, satellite/cable systems, virtual arcade)</li>
+            <li class="sub">Hardware support (rack servers, switches, laptops, Mac, presentations)</li>
           </ul>
         </div>
 
-        <div class="job">
-          <div class="job-header">
-            <div class="job-title">System Administrator / R&amp;D Engineer</div>
-            <div class="job-period">Jul – Oct 2011</div>
+        <div class="tl-item">
+          <div class="tl-role">System Administrator / R&amp;D</div>
+          <div class="tl-company">
+            <span class="tl-company-name">Kontego Networks</span>
+            <span class="tl-dot">·</span>
+            <span class="tl-date">Jul – Oct 2011</span>
           </div>
-          <div class="job-company">Kontego Networks</div>
-          <ul class="job-bullets">
-            <li>Migrated public servers to secure DMZ; clustered PostgreSQL; configured NFS-boot and OpenStack/Xen clustering</li>
-            <li>Developed Freeswitch telephony integration with Cisco AS5300</li>
+          <ul class="tl-bullets">
+            <li>R&amp;D for an ISP; migrated servers from web-facing IPs to DMZ model</li>
+            <li>Migrated PostgreSQL from single-node to clustered model; set up NFS bootable systems</li>
+            <li>Freeswitch dev interfacing with Cisco AS5300; clustering (Xen, OpenStack, GPLHost)</li>
           </ul>
         </div>
 
-        <div class="job">
-          <div class="job-header">
-            <div class="job-title">System Analyst</div>
-            <div class="job-period">Jul 2009 – Jul 2011</div>
+        <div class="tl-item">
+          <div class="tl-role">System Analyst</div>
+          <div class="tl-company">
+            <span class="tl-company-name">Ajilon</span>
+            <span class="tl-dot">·</span>
+            <span class="tl-date">Jul 2009 – Jul 2011</span>
           </div>
-          <div class="job-company">Ajilon (Target Corp.)</div>
-          <ul class="job-bullets">
-            <li>Virtualized enterprise server infrastructure; scripted automation utilities; assistant supervisor for cross-team escalations</li>
+          <ul class="tl-bullets">
+            <li>Virtualized servers for Target Corp.; debugged builds; scripted task-automation utilities</li>
+            <li>Acted as assistant supervisor; escalated issues across server teams</li>
           </ul>
         </div>
 
-        <div class="job">
-          <div class="job-header">
-            <div class="job-title">Senior Technical Consultant / SysAdmin</div>
-            <div class="job-period">Aug – Dec 2009</div>
+        <div class="tl-item">
+          <div class="tl-role">Senior Technical Consultant / SysAdmin</div>
+          <div class="tl-company">
+            <span class="tl-company-name">EVO Canada</span>
+            <span class="tl-dot">·</span>
+            <span class="tl-date">Aug – Dec 2009</span>
+            <span class="tl-dot">·</span>
+            <span class="tl-loc">Montreal</span>
           </div>
-          <div class="job-company">EVO Canada · Montreal, QC</div>
-          <ul class="job-bullets">
-            <li>Sole IT manager for <strong>125 office + 40 remote staff</strong> — designed full infrastructure end-to-end</li>
-            <li>Deployed Cisco ASA Firewall, VPN, WAN links, Kantech access control; delivered full IT onboarding training</li>
+          <ul class="tl-bullets">
+            <li>Sole IT manager for 125 office staff + 40 remote sales agents across Canada</li>
+            <li>Cisco ASA Firewall &amp; VPN, point-to-point links, Kantech access card system</li>
+            <li>Solutions Architect and Workflow Manager; trained all staff and management</li>
           </ul>
         </div>
 
-        <div class="job">
-          <div class="job-header">
-            <div class="job-title">Linux Administrator — NOC</div>
-            <div class="job-period">Jun 2008 – May 2009</div>
+        <div class="tl-item">
+          <div class="tl-role">Linux Administrator</div>
+          <div class="tl-company">
+            <span class="tl-company-name">Softvoyage</span>
+            <span class="tl-dot">·</span>
+            <span class="tl-date">Jun 2008 – May 2009</span>
           </div>
-          <div class="job-company">Softvoyage</div>
-          <ul class="job-bullets">
-            <li><strong>24/7 NOC</strong> — monitored and resolved server/network incidents across production Linux infrastructure</li>
+          <ul class="tl-bullets">
+            <li>NOC team member — 24/7 rotational support</li>
           </ul>
         </div>
 
-        <div class="job">
-          <div class="job-header">
-            <div class="job-title">Technical Support Representative</div>
-            <div class="job-period">Apr – Jun 2008</div>
+        <div class="tl-item">
+          <div class="tl-role">Technical Support Representative</div>
+          <div class="tl-company">
+            <span class="tl-company-name">CSC — Computer Sciences Corp.</span>
+            <span class="tl-dot">·</span>
+            <span class="tl-date">Apr – Jun 2008</span>
           </div>
-          <div class="job-company">CSC — Computer Sciences Corp.</div>
-          <ul class="job-bullets">
-            <li><strong>2nd person in 5+ years</strong> to achieve a perfect score on the EATON assessment; best resolution-to-time ratio on team; trained new hires directly</li>
+          <ul class="tl-bullets">
+            <li>L1 support for EATON via Citrix; 2nd ever to score 100% on EATON test in 5+ years</li>
+            <li>Skipped shadowing week to train other employees; best resolution/time-on-call ratio on team</li>
           </ul>
         </div>
 
-        <div class="job">
-          <div class="job-header">
-            <div class="job-title">Director of Information Technology</div>
-            <div class="job-period">Jan 2005 – Dec 2007</div>
+        <div class="tl-item">
+          <div class="tl-role">Director of Information Technology</div>
+          <div class="tl-company">
+            <span class="tl-company-name">Orderin</span>
+            <span class="tl-dot">·</span>
+            <span class="tl-date">Jan 2005 – Dec 2007</span>
           </div>
-          <div class="job-company">Orderin</div>
-          <ul class="job-bullets">
-            <li>Sole IT manager — scaled infrastructure from <strong>2 → 100+ employees</strong>; deployed OpenVPN, Asterisk TRIXBOX, 60 Grandstream VoIP phones</li>
-            <li>Administered SharePoint, BlackBerry Enterprise Server, Nortel PBX, SEO campaigns, and database admin</li>
+          <ul class="tl-bullets">
+            <li>Sole IT manager for 100+ staff and 20 remote agents; grew company from 2 → 100+ employees</li>
+            <li>Gentoo IPTables Firewall, OpenVPN, Asterisk TRIXBOX, 60 Grandstream VoIP phones</li>
+            <li>SharePoint, BES, Nortel PBX; SEO campaign management; database administration</li>
           </ul>
         </div>
 
-        <div class="job">
-          <div class="job-header">
-            <div class="job-title">Senior Technician</div>
-            <div class="job-period">Jul 2003 – Jan 2005</div>
+        <div class="tl-item">
+          <div class="tl-role">Senior Technician</div>
+          <div class="tl-company">
+            <span class="tl-company-name">Netchamp</span>
+            <span class="tl-dot">·</span>
+            <span class="tl-date">Jul 2003 – Jan 2005</span>
           </div>
-          <div class="job-company">Netchamp</div>
-          <ul class="job-bullets">
-            <li>Deployed 60 of 120 machines in full network rollout; shell-replacement security hardening; significantly reduced downtime</li>
+          <ul class="tl-bullets">
+            <li>Deployed 60 of 120 machines; implemented shell-replacement security; dramatically reduced network downtime</li>
           </ul>
         </div>
 
-      </div>
-    </section>
-
-    <!-- Technical Skills -->
-    <section>
-      <div class="sec-head">Technical Skills</div>
-      <div class="skills-grid">
-        <div class="skill-row">
-          <div class="skill-cat">Operating Systems</div>
-          <div class="skill-val">Linux · Unix · Solaris · BSD · Fuchsia OS · HarmonyOS · RTOS · Windows Server · Android</div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-cat">Hypervisors</div>
-          <div class="skill-val">VMware ESXi/vSphere · Hyper-V · XenServer · KVM · Oracle VM · QEMU · AWS Nitro · Google KVM · Azure Hypervisor · VirtualBox</div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-cat">Cloud &amp; Containers</div>
-          <div class="skill-val">AWS · Azure · GCP · Docker · Kubernetes · OpenStack · Terraform · Ansible · Puppet</div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-cat">Networking &amp; Security</div>
-          <div class="skill-val">Cisco · VPN · DNS · DMZ · BGP · VLAN · Pen Testing · IDS/IPS · PCI DSS · Firewalls</div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-cat">VoIP &amp; Telephony</div>
-          <div class="skill-val">Asterisk · SIP · Freeswitch · Trixbox · Grandstream · Nortel PBX</div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-cat">Scripting &amp; Dev</div>
-          <div class="skill-val">Bash · Python · Perl · Ruby · PHP · JavaScript · HTML · Shell Scripting</div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-cat">Databases &amp; Storage</div>
-          <div class="skill-val">MySQL · PostgreSQL · MySQL Cluster · NFS · SAN/NAS · Backup &amp; Recovery</div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-cat">Methodologies</div>
-          <div class="skill-val">Agile · Scrum · Kanban · DevOps · CI/CD · ITIL · Six Sigma · PRINCE2 · SAFe</div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-cat">AI &amp; Monitoring</div>
-          <div class="skill-val">LLM Integration · Workflow Automation · Intelligent Monitoring · Nagios</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bottom 3-col -->
-    <div class="bottom-grid">
-      <div class="bottom-col">
-        <div class="bottom-col-title">Education</div>
-        <p><strong>Collège de Montréal</strong><br>Information Technology<br>1997 – 2002 · Montreal, QC</p>
-      </div>
-      <div class="bottom-col">
-        <div class="bottom-col-title">Languages</div>
-        <p>🇫🇷 French — Native<br>🇬🇧 English — Fluent<br>🇪🇸 Spanish — Conversational</p>
-      </div>
-      <div class="bottom-col">
-        <div class="bottom-col-title">Frameworks &amp; Certs</div>
-        <p>ITIL · Six Sigma · PCI DSS<br>PRINCE2 · SAFe · Agile<br>DevOps · Scrum</p>
-      </div>
+      </div><!-- /timeline -->
     </div>
 
-  </main>
+    <!-- RIGHT: SIDEBAR -->
+    <div class="sidebar">
 
-  <!-- ══ FOOTER ═══════════════════════════════════════════════════════ -->
-  <footer class="footer">
-    Evan Hopkins &nbsp;·&nbsp; Senior IT Consultant &amp; AI Solutions Specialist &nbsp;·&nbsp; Montreal, QC &nbsp;·&nbsp;
-    linkedin.com/in/evan-hopkins-329237a3 &nbsp;·&nbsp; Updated May 2026
-  </footer>
+      <!-- TECH PROFICIENCY -->
+      <div class="sec-label" style="margin-top:0;"><span class="num">03 /</span> Tech Depth</div>
+      <div class="radar-list">
+        <div class="radar-item">
+          <div class="radar-label">Linux / UNIX Administration <span>Expert</span></div>
+          <div class="radar-bar"><div class="radar-fill f-cyan" style="width:96%"></div></div>
+        </div>
+        <div class="radar-item">
+          <div class="radar-label">Network Engineering <span>Expert</span></div>
+          <div class="radar-bar"><div class="radar-fill f-cyan" style="width:92%"></div></div>
+        </div>
+        <div class="radar-item">
+          <div class="radar-label">Security &amp; Penetration Testing <span>Advanced</span></div>
+          <div class="radar-bar"><div class="radar-fill f-blue" style="width:88%"></div></div>
+        </div>
+        <div class="radar-item">
+          <div class="radar-label">Virtualization / Cloud (AWS, Azure) <span>Advanced</span></div>
+          <div class="radar-bar"><div class="radar-fill f-blue" style="width:85%"></div></div>
+        </div>
+        <div class="radar-item">
+          <div class="radar-label">Scripting (Bash, Python, Perl) <span>Advanced</span></div>
+          <div class="radar-bar"><div class="radar-fill f-blue" style="width:87%"></div></div>
+        </div>
+        <div class="radar-item">
+          <div class="radar-label">VoIP / Asterisk / SIP <span>Advanced</span></div>
+          <div class="radar-bar"><div class="radar-fill f-gold" style="width:82%"></div></div>
+        </div>
+        <div class="radar-item">
+          <div class="radar-label">AI / LLM Integration <span>Current</span></div>
+          <div class="radar-bar"><div class="radar-fill f-gold" style="width:80%"></div></div>
+        </div>
+        <div class="radar-item">
+          <div class="radar-label">Web Development (PHP, HTML, JS) <span>Proficient</span></div>
+          <div class="radar-bar"><div class="radar-fill f-blue" style="width:75%"></div></div>
+        </div>
+      </div>
 
-</div>
+      <!-- LANGUAGES -->
+      <div class="sec-label"><span class="num">04 /</span> Languages</div>
+      <div class="lang-row">
+        <div class="lang-item">
+          <div class="lang-top">French <span class="lang-level">Native</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:100%; animation-delay:0.2s"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-top">English <span class="lang-level">Fluent</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:98%; animation-delay:0.4s"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-top">Spanish <span class="lang-level">Conversational</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:55%; animation-delay:0.6s"></div></div>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="sec-label"><span class="num">05 /</span> Education</div>
+      <div class="edu-box">
+        <div class="edu-school">Collège de Montréal</div>
+        <div class="edu-date">1997 – 2002</div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="sec-label"><span class="num">06 /</span> Projects</div>
+      <div class="proj-item">
+        <div class="proj-icon">⌨</div>
+        <div>
+          <div class="proj-name">FreeNode IRC</div>
+          <div class="proj-sub">Jan 2004 – Present · Open-source community</div>
+        </div>
+      </div>
+
+    </div><!-- /sidebar -->
+  </div><!-- /two-col -->
+
+  <!-- ══ VERIFIED SKILLS ══ -->
+  <div class="sec-label"><span class="num">07 /</span> LinkedIn-Verified Skills <span style="font-size:0.6rem;color:var(--gray);margin-left:8px;letter-spacing:0.05em;">— all confirmed via aptitude assessment</span></div>
+  <div class="verified-grid">
+    <div class="skill-chip">System Administration</div>
+    <div class="skill-chip">Database Administration</div>
+    <div class="skill-chip">VoIP</div>
+    <div class="skill-chip">Linux</div>
+    <div class="skill-chip">Linux Sys. Admin.</div>
+    <div class="skill-chip">Windows</div>
+    <div class="skill-chip">Windows 7</div>
+    <div class="skill-chip">Windows Server</div>
+    <div class="skill-chip">Asterisk</div>
+    <div class="skill-chip">MySQL Cluster</div>
+    <div class="skill-chip">MySQL</div>
+    <div class="skill-chip">FreeBSD</div>
+    <div class="skill-chip">Virtualization</div>
+    <div class="skill-chip">VMware</div>
+    <div class="skill-chip">VirtualBox</div>
+    <div class="skill-chip">Automation</div>
+    <div class="skill-chip">System Deployment</div>
+    <div class="skill-chip">Networking</div>
+    <div class="skill-chip">Security</div>
+    <div class="skill-chip">Firewalls</div>
+    <div class="skill-chip">DNS</div>
+    <div class="skill-chip">Technical Support</div>
+    <div class="skill-chip">Cisco Technologies</div>
+    <div class="skill-chip">Network Administration</div>
+    <div class="skill-chip">Python</div>
+    <div class="skill-chip">Servers</div>
+    <div class="skill-chip">Troubleshooting</div>
+    <div class="skill-chip">Puppet</div>
+    <div class="skill-chip">Bash</div>
+    <div class="skill-chip">Agile Methodologies</div>
+    <div class="skill-chip">PHP</div>
+    <div class="skill-chip">HTML</div>
+    <div class="skill-chip">JavaScript</div>
+    <div class="skill-chip">Android</div>
+    <div class="skill-chip">CentOS</div>
+    <div class="skill-chip">Nagios</div>
+  </div>
+
+</div><!-- /page -->
 </body>
 </html>
