@@ -49,7 +49,7 @@ export const Hero = () => {
           </div>
 
           <div className="flex items-center gap-6">
-            <a href="https://linkedin.com" className="text-zinc-500 hover:text-emerald-500 transition-colors">
+            <a href="https://www.linkedin.com/in/evan-hopkins-329237a3/" className="text-zinc-500 hover:text-emerald-500 transition-colors">
               <Link2 className="w-6 h-6" />
             </a>
             <a href="https://github.com/miscpc" className="text-zinc-500 hover:text-emerald-500 transition-colors">
