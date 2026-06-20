@@ -1,63 +1,28 @@
 import { motion } from 'framer-motion';
-import { 
-  Server, 
-  Shield, 
-  Database, 
-  Cpu, 
-  Code2, 
-  Cloud,
-  Terminal as TerminalIcon
-} from 'lucide-react';
+import { Cloud, Code2, Cpu, Database, Server, Shield, Terminal as TerminalIcon } from 'lucide-react';
+import { LocaleContent } from '../content';
 
-const skillCategories = [
-  {
-    title: 'Systems & OS',
-    icon: <Server className="w-5 h-5" />,
-    skills: ['Linux (RHEL/CentOS/Debian)', 'Windows Server', 'FreeBSD', 'System Administration', 'Bare-metal Infrastructure']
-  },
-  {
-    title: 'Networking & Security',
-    icon: <Shield className="w-5 h-5" />,
-    skills: ['Cisco Technologies', 'Firewalls (ASA/IPTables)', 'DNS/DHCP', 'Network Administration', 'Cybersecurity']
-  },
-  {
-    title: 'Virtualization & Cloud',
-    icon: <Cloud className="w-5 h-5" />,
-    skills: ['VMware', 'VirtualBox', 'Xen', 'OpenStack', 'Cloud-native Deployments']
-  },
-  {
-    title: 'DevOps & Automation',
-    icon: <Cpu className="w-5 h-5" />,
-    skills: ['Puppet', 'Bash/Shell Scripting', 'Python Automation', 'Nagios Monitoring', 'System Deployment']
-  },
-  {
-    title: 'Databases',
-    icon: <Database className="w-5 h-5" />,
-    skills: ['MySQL Cluster', 'PostgreSQL', 'Database Administration', 'NFS Clustering']
-  },
-  {
-    title: 'Communications',
-    icon: <TerminalIcon className="w-5 h-5" />,
-    skills: ['VoIP / SIP', 'Asterisk', 'FreeSwitch', 'Trixbox', 'Nortel PBX']
-  },
-  {
-    title: 'Development',
-    icon: <Code2 className="w-5 h-5" />,
-    skills: ['Python', 'PHP', 'JavaScript', 'HTML5', 'Android Development']
-  },
-  {
-    title: 'AI & Workflow',
-    icon: <Cpu className="w-5 h-5" />,
-    skills: ['AI-augmented Solutions', 'Intelligent Workflow', 'Automation Engineering', 'Root Cause Analysis']
-  }
+interface SkillsProps {
+  categories: LocaleContent['skillsSection']['categories'];
+}
+
+const icons = [
+  <Server className="w-5 h-5" />,
+  <Shield className="w-5 h-5" />,
+  <Cloud className="w-5 h-5" />,
+  <Cpu className="w-5 h-5" />,
+  <Database className="w-5 h-5" />,
+  <TerminalIcon className="w-5 h-5" />,
+  <Code2 className="w-5 h-5" />,
+  <Cpu className="w-5 h-5" />,
 ];
 
-export const Skills = () => {
+export const Skills = ({ categories }: SkillsProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {skillCategories.map((category, idx) => (
+      {categories.map((category, idx) => (
         <motion.div
-          key={idx}
+          key={category.title}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -66,13 +31,13 @@ export const Skills = () => {
         >
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-500 group-hover:scale-110 transition-transform">
-              {category.icon}
+              {icons[idx]}
             </div>
             <h3 className="font-semibold text-zinc-200">{category.title}</h3>
           </div>
           <ul className="space-y-2">
-            {category.skills.map((skill, sIdx) => (
-              <li key={sIdx} className="text-sm text-zinc-400 flex items-center gap-2">
+            {category.skills.map((skill) => (
+              <li key={skill} className="text-sm text-zinc-400 flex items-center gap-2">
                 <div className="w-1 h-1 rounded-full bg-emerald-500/50" />
                 {skill}
               </li>
