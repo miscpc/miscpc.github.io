@@ -11,8 +11,62 @@ import {
   Cpu, 
   Users, 
   MessageSquare,
-  ArrowUpRight
+  ArrowUpRight,
+  Award,
+  ExternalLink,
+  FileText
 } from 'lucide-react';
+
+const roleCertificates = [
+  {
+    title: 'Frontend Developer (React)',
+    fileName: 'frontend-developer-react.pdf',
+    url: 'https://www.hackerrank.com/certificates/d7c56cab142f',
+  },
+  {
+    title: 'Software Engineer',
+    fileName: 'software-engineer.pdf',
+    url: 'https://www.hackerrank.com/certificates/a8cf9e91b741',
+  },
+];
+
+const skillCertificates = [
+  {
+    title: 'Problem Solving (Basic)',
+    fileName: 'problem-solving-basic.pdf',
+    url: 'https://www.hackerrank.com/certificates/e39a1ae30201',
+  },
+  {
+    title: 'SQL (Advanced)',
+    fileName: 'sql-advanced.pdf',
+    url: 'https://www.hackerrank.com/certificates/226bf09ed897',
+  },
+  {
+    title: 'SQL (Intermediate)',
+    fileName: 'sql-intermediate.pdf',
+    url: 'https://www.hackerrank.com/certificates/f3ad0148db4e',
+  },
+  {
+    title: 'SQL (Basic)',
+    fileName: 'sql-basic.pdf',
+    url: 'https://www.hackerrank.com/certificates/c2dd536232d3',
+  },
+  {
+    title: 'JavaScript (Intermediate)',
+    fileName: 'javascript-intermediate.pdf',
+    url: 'https://www.hackerrank.com/certificates/5bc9451ebcd0',
+  },
+  {
+    title: 'JavaScript (Basic)',
+    fileName: 'javascript-basic.pdf',
+    url: 'https://www.hackerrank.com/certificates/5c101dfd26cf',
+  },
+  {
+    title: 'Angular (Intermediate)',
+    fileName: 'angular-intermediate.pdf',
+    url: 'https://www.hackerrank.com/certificates/f9034a8a19bd',
+  },
+];
 
 const App = () => {
   return (
@@ -60,7 +114,7 @@ const App = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-2 space-y-6">
               <p className="text-xl text-zinc-300 leading-relaxed">
-                A results-driven IT professional with over <span className="text-emerald-400 font-bold">20 years</span> of hands-on experience. 
+                A results-driven IT professional with over <span className="text-[#00ff66] font-bold">20 years</span> of hands-on experience. 
                 When no solution is found, I fix the problem by ensuring the root cause is identified and eliminated.
               </p>
               <p className="text-zinc-400 leading-relaxed">
@@ -77,7 +131,7 @@ const App = () => {
                   { icon: <Cpu className="w-5 h-5" />, title: 'AI Integration', desc: 'Modernizing legacy stacks' },
                 ].map((item, i) => (
                   <div key={i} className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50 flex gap-4">
-                    <div className="text-emerald-500 shrink-0">{item.icon}</div>
+                    <div className="text-[#00ff66] shrink-0">{item.icon}</div>
                     <div>
                       <h4 className="font-semibold text-white text-sm">{item.title}</h4>
                       <p className="text-xs text-zinc-500 mt-1">{item.desc}</p>
@@ -85,12 +139,97 @@ const App = () => {
                   </div>
                 ))}
               </div>
+
+              <div className="mt-10 rounded-3xl bg-[#00ff66]/8 border border-[#00ff66]/20 p-6 md:p-7">
+                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-6">
+                  <div>
+                    <h4 className="text-[#00ff66] font-bold text-sm uppercase tracking-[0.2em] mb-2">
+                      HackerRank Verified Certificates
+                    </h4>
+                    <p className="text-sm text-zinc-300 max-w-2xl leading-relaxed">
+                      9 verified certificates surfaced directly from your HackerRank profile, with the blue role certificates shown first and every credential linked individually.
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.hackerrank.com/profile/evanh720"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-[#00ff66] hover:text-white transition-colors"
+                  >
+                    View HackerRank Profile <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+
+                <div className="space-y-6">
+                  <div>
+                    <div className="text-[11px] uppercase tracking-[0.25em] text-sky-400 font-bold mb-3">
+                      Role Certificates
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {roleCertificates.map((cert) => (
+                        <a
+                          key={cert.url}
+                          href={cert.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="group rounded-2xl bg-sky-500/10 border border-sky-500/20 p-4 hover:border-sky-400/50 hover:bg-sky-500/15 transition-all"
+                        >
+                          <Award className="w-6 h-6 text-sky-400 mb-3" />
+                          <div className="text-[11px] font-mono text-sky-300 break-all mb-2">
+                            {cert.fileName}
+                          </div>
+                          <div className="flex items-start justify-between gap-3">
+                            <div>
+                              <h5 className="text-white text-sm font-semibold group-hover:text-sky-300 transition-colors">
+                                {cert.title}
+                              </h5>
+                              <p className="text-xs text-zinc-400 mt-1">Verified role certificate</p>
+                            </div>
+                            <ExternalLink className="w-4 h-4 text-sky-300 shrink-0 mt-0.5" />
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="text-[11px] uppercase tracking-[0.25em] text-[#00ff66] font-bold mb-3">
+                      Skill Certificates
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {skillCertificates.map((cert) => (
+                        <a
+                          key={cert.url}
+                          href={cert.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="group rounded-2xl bg-zinc-900/80 border border-zinc-800 p-4 hover:border-[#00ff66]/40 hover:bg-[#00ff66]/5 transition-all"
+                        >
+                          <FileText className="w-6 h-6 text-[#00ff66] mb-3" />
+                          <div className="text-[11px] font-mono text-[#8cffbf] break-all mb-2">
+                            {cert.fileName}
+                          </div>
+                          <div className="flex items-start justify-between gap-3">
+                            <div>
+                              <h5 className="text-white text-sm font-semibold group-hover:text-[#00ff66] transition-colors">
+                                {cert.title}
+                              </h5>
+                              <p className="text-xs text-zinc-500 mt-1">Verified skill certificate</p>
+                            </div>
+                            <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-[#00ff66] shrink-0 mt-0.5 transition-colors" />
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             
             <div className="space-y-6">
-              <div className="p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/10">
+              <div className="p-6 rounded-2xl bg-[#00ff66]/5 border border-[#00ff66]/15">
                 <h4 className="text-white font-bold mb-4 flex items-center gap-2">
-                  <Code2 className="w-4 h-4 text-emerald-500" />
+                  <Code2 className="w-4 h-4 text-[#00ff66]" />
                   Technical Focus
                 </h4>
                 <div className="space-y-4">
@@ -103,11 +242,11 @@ const App = () => {
                     <div key={stat.label}>
                       <div className="flex justify-between text-xs mb-1.5">
                         <span className="text-zinc-400">{stat.label}</span>
-                        <span className="text-emerald-500">{stat.value}%</span>
+                        <span className="text-[#00ff66]">{stat.value}%</span>
                       </div>
                       <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
                         <div 
-                          className="h-full bg-emerald-500 rounded-full" 
+                          className="h-full bg-[#00ff66] rounded-full" 
                           style={{ width: `${stat.value}%` }} 
                         />
                       </div>
@@ -121,18 +260,26 @@ const App = () => {
                 <ul className="space-y-3">
                   {['No Band-aid Solutions', 'Scalability by Design', 'Security at the Edge', 'Workflow Optimization'].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-zinc-400">
-                      <div className="w-1 h-1 rounded-full bg-emerald-500" />
+                      <div className="w-1 h-1 rounded-full bg-[#00ff66]" />
                       {item}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
-                <h4 className="text-emerald-400 font-bold mb-2 text-sm">HackerRank Certified</h4>
-                <p className="text-xs text-zinc-400 leading-relaxed">
-                  Verified excellence in problem solving, algorithms, and technical aptitude.
+              <div className="p-6 rounded-2xl bg-[#00ff66]/10 border border-[#00ff66]/20">
+                <h4 className="text-[#00ff66] font-bold mb-2 text-sm">HackerRank Certified</h4>
+                <p className="text-xs text-zinc-300 leading-relaxed mb-3">
+                  9 verified certificates total — 2 blue role certifications first, followed by 7 direct skill certificate links below.
                 </p>
+                <a
+                  href="https://www.hackerrank.com/profile/evanh720"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-xs text-[#00ff66] hover:text-white transition-colors"
+                >
+                  Open full profile <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
 
               <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
