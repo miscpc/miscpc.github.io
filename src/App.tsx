@@ -36,9 +36,12 @@ const App = () => {
                 {item}
               </a>
             ))}
-            <button className="px-4 py-1.5 rounded-full bg-white text-black text-sm font-semibold hover:bg-emerald-500 transition-colors">
+            <a
+              href="#contact"
+              className="px-4 py-1.5 rounded-full bg-white text-black text-sm font-semibold hover:bg-emerald-500 transition-colors"
+            >
               Hire Me
-            </button>
+            </a>
           </div>
         </nav>
       </header>
@@ -200,29 +203,40 @@ const App = () => {
                 </div>
               </div>
               
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <form
+                action="https://formspree.io/f/mqevzkbr"
+                method="POST"
+                className="space-y-4"
+              >
+                <input type="hidden" name="_subject" value="New website contact form message" />
                 <div>
                   <input 
+                    name="name"
                     type="text" 
                     placeholder="Your Name"
+                    required
                     className="w-full bg-zinc-800/50 border border-zinc-700 rounded-xl px-4 py-3 text-zinc-200 focus:outline-none focus:border-emerald-500 transition-colors"
                   />
                 </div>
                 <div>
                   <input 
+                    name="email"
                     type="email" 
                     placeholder="Your Email"
+                    required
                     className="w-full bg-zinc-800/50 border border-zinc-700 rounded-xl px-4 py-3 text-zinc-200 focus:outline-none focus:border-emerald-500 transition-colors"
                   />
                 </div>
                 <div>
                   <textarea 
+                    name="message"
                     placeholder="Your Message"
                     rows={4}
+                    required
                     className="w-full bg-zinc-800/50 border border-zinc-700 rounded-xl px-4 py-3 text-zinc-200 focus:outline-none focus:border-emerald-500 transition-colors resize-none"
                   />
                 </div>
-                <button className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+                <button type="submit" className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-xl transition-all flex items-center justify-center gap-2">
                   Send Message <ArrowUpRight className="w-4 h-4" />
                 </button>
               </form>
