@@ -1,21 +1,19 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Terminal as TerminalIcon } from 'lucide-react';
+import { LocaleContent } from '../content';
 
-const commands = {
-  help: 'Available commands: about, skills, experience, contact, clear, whoami, uptime, status',
-  about: 'Evan Hopkins: Solution Master & IT Professional with 20+ years of experience. Expert in finding root causes and engineering full-stack solutions.',
-  skills: 'Expertise: Linux, Windows, DevOps, AI Integration, Security, Networking, VoIP, Cloud, Automation, and more...',
-  experience: '15 years at Ville de Montréal, Director of IT at Orderin (age 20), Senior Technician at Netchamp (age 18). Total 20+ years.',
-  contact: 'Connect via LinkedIn or visit miscpc.github.io',
-  whoami: 'user@evan-hopkins-terminal:~$ A curious visitor seeking the best Solution Master.',
-  uptime: 'System up for 41 years (Evan Hopkins v1985)',
-  status: 'Ready to engineer your next big solution. All systems nominal.'
-};
+interface TerminalProps {
+  content: LocaleContent['terminal'];
+}
 
-export const Terminal = () => {
+export const Terminal = ({ content }: TerminalProps) => {
   const [input, setInput] = useState('');
-  const [history, setHistory] = useState<string[]>(['Welcome to Evan Hopkins OS v2.0.0', 'Type "help" to see available commands.']);
+  const [history, setHistory] = useState<string[]>(content.history);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setHistory(content.history);
+  }, [content]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -23,16 +21,37 @@ export const Terminal = () => {
     }
   }, [history]);
 
+  const commandMap = useMemo(() => {
+    const map: Record<string, keyof typeof content.responses | 'clear'> = {
+      clear: 'clear',
+      ...content.aliases,
+    } as Record<string, keyof typeof content.responses | 'clear'>;
+
+    (Object.keys(content.responses) as Array<keyof typeof content.responses>).forEach((key) => {
+      map[key] = key;
+    });
+
+    return map;
+  }, [content]);
+
   const handleCommand = (e: React.FormEvent) => {
     e.preventDefault();
-    const cmd = input.toLowerCase().trim();
-    if (cmd === 'clear') {
+    const raw = input.trim();
+    const cmd = raw.toLowerCase();
+    const normalized = commandMap[cmd];
+
+    if (normalized === 'clear') {
       setHistory([]);
-    } else if (cmd in commands) {
-      setHistory([...history, `> ${input}`, commands[cmd as keyof typeof commands]]);
+    } else if (normalized && normalized in content.responses) {
+      setHistory((prev) => [...prev, `> ${raw}`, content.responses[normalized as keyof typeof content.responses]]);
     } else if (cmd !== '') {
-      setHistory([...history, `> ${input}`, `Command not found: ${cmd}. Type "help" for options.`]);
+      setHistory((prev) => [
+        ...prev,
+        `> ${raw}`,
+        content.notFound.replace('{{cmd}}', cmd),
+      ]);
     }
+
     setInput('');
   };
 
@@ -41,7 +60,7 @@ export const Terminal = () => {
       <div className="bg-zinc-900 px-4 py-2 flex items-center justify-between border-b border-zinc-800">
         <div className="flex items-center gap-2">
           <TerminalIcon className="w-4 h-4 text-emerald-500" />
-          <span className="text-zinc-400 text-xs">evan-hopkins-cli</span>
+          <span className="text-zinc-400 text-xs">{content.title}</span>
         </div>
         <div className="flex gap-1.5">
           <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50" />
@@ -49,10 +68,7 @@ export const Terminal = () => {
           <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
         </div>
       </div>
-      <div 
-        ref={scrollRef}
-        className="flex-1 p-4 overflow-y-auto space-y-2 scrollbar-thin scrollbar-thumb-zinc-800 relative"
-      >
+      <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto space-y-2 scrollbar-thin scrollbar-thumb-zinc-800 relative">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none select-none font-mono text-[8px] leading-none overflow-hidden">
           {Array.from({ length: 50 }).map((_, i) => (
             <div key={i} className="whitespace-nowrap">
@@ -61,7 +77,7 @@ export const Terminal = () => {
           ))}
         </div>
         {history.map((line, i) => (
-          <div key={i} className={line.startsWith('>') ? 'text-emerald-500' : 'text-zinc-300'}>
+          <div key={`${line}-${i}`} className={line.startsWith('>') ? 'text-emerald-500' : 'text-zinc-300'}>
             {line}
           </div>
         ))}
