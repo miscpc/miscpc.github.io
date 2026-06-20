@@ -60,39 +60,67 @@ const skillCertificates = [
 ];
 
 const App = () => {
-  const [locale] = useState<Locale>(detectLocale);
+  const [locale, setLocale] = useState<Locale>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = window.localStorage.getItem('resume-locale');
+      if (saved === 'en' || saved === 'fr') {
+        return saved;
+      }
+    }
+    return detectLocale();
+  });
   const content = useMemo(() => appContent[locale], [locale]);
 
   useEffect(() => {
     document.documentElement.lang = content.meta.lang;
     document.title = content.meta.title;
-  }, [content]);
+    window.localStorage.setItem('resume-locale', locale);
+  }, [content, locale]);
 
   return (
     <div className="relative min-h-screen bg-[#050505] text-zinc-300 selection:bg-emerald-500/30 selection:text-emerald-200 overflow-x-hidden">
       <ConstellationBackground />
 
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/50 bg-[#050505]/80 backdrop-blur-md">
-        <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
+        <nav className="container mx-auto px-6 h-16 flex items-center justify-between gap-4">
           <div className="text-xl font-bold text-white tracking-tighter">
             EH<span className="text-emerald-500">.</span>
           </div>
-          <div className="hidden md:flex items-center gap-8">
-            {content.nav.map((item) => (
+          <div className="flex items-center gap-3 md:gap-6">
+            <div className="flex items-center rounded-full border border-zinc-700 bg-zinc-900/80 p-1">
+              {(['en', 'fr'] as Locale[]).map((lang) => (
+                <button
+                  key={lang}
+                  type="button"
+                  onClick={() => setLocale(lang)}
+                  className={`px-3 py-1 rounded-full text-xs font-bold tracking-widest transition-colors ${
+                    locale === lang
+                      ? 'bg-emerald-500 text-black'
+                      : 'text-zinc-400 hover:text-white'
+                  }`}
+                  aria-pressed={locale === lang}
+                >
+                  {lang.toUpperCase()}
+                </button>
+              ))}
+            </div>
+            <div className="hidden md:flex items-center gap-8">
+              {content.nav.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
               <a
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+                href="#contact"
+                className="px-4 py-1.5 rounded-full bg-white text-black text-sm font-semibold hover:bg-emerald-500 transition-colors"
               >
-                {item.label}
+                {content.hireMe}
               </a>
-            ))}
-            <a
-              href="#contact"
-              className="px-4 py-1.5 rounded-full bg-white text-black text-sm font-semibold hover:bg-emerald-500 transition-colors"
-            >
-              {content.hireMe}
-            </a>
+            </div>
           </div>
         </nav>
       </header>
@@ -385,7 +413,7 @@ const App = () => {
 
       <footer className="relative z-10 py-12 border-t border-zinc-800/50 text-center">
         <div className="text-zinc-500 text-sm">
-          © {new Date().getFullYear()} Evan Hopkins. {content.footer}
+          © {new Date().getFullYear()} Evan Hopkins. All rights reserved. {content.footer}
         </div>
       </footer>
     </div>
