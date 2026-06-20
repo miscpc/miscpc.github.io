@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Terminal } from './Terminal';
-import { ChevronRight, Download, Link2, Code } from 'lucide-react';
+import { ChevronRight, Link2, Code } from 'lucide-react';
 
 export const Hero = () => {
   return (
@@ -40,12 +40,12 @@ export const Hero = () => {
           </p>
           
           <div className="flex flex-wrap gap-4 mb-10">
-            <button className="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-semibold transition-all flex items-center gap-2">
+            <a
+              href="#projects"
+              className="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-semibold transition-all flex items-center gap-2"
+            >
               View Case Studies <ChevronRight className="w-4 h-4" />
-            </button>
-            <button className="px-6 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-semibold transition-all flex items-center gap-2 border border-zinc-700">
-              <Download className="w-4 h-4" /> Download CV
-            </button>
+            </a>
           </div>
 
           <div className="flex items-center gap-6">
