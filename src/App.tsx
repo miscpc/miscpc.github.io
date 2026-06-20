@@ -140,86 +140,89 @@ const App = () => {
                 ))}
               </div>
 
-              <div className="mt-10 rounded-3xl bg-[#00ff66]/8 border border-[#00ff66]/20 p-6 md:p-7">
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-6">
-                  <div>
-                    <h4 className="text-[#00ff66] font-bold text-sm uppercase tracking-[0.2em] mb-2">
-                      HackerRank Verified Certificates
-                    </h4>
-                    <p className="text-sm text-zinc-300 max-w-2xl leading-relaxed">
-                      9 verified certificates surfaced directly from your HackerRank profile, with the blue role certificates shown first and every credential linked individually.
-                    </p>
-                  </div>
-                  <a
-                    href="https://www.hackerrank.com/profile/evanh720"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-[#00ff66] hover:text-white transition-colors"
-                  >
-                    View HackerRank Profile <ExternalLink className="w-4 h-4" />
-                  </a>
-                </div>
-
-                <div className="space-y-6">
-                  <div>
-                    <div className="text-[11px] uppercase tracking-[0.25em] text-sky-400 font-bold mb-3">
-                      Role Certificates
+              <div className="mt-10 overflow-hidden rounded-3xl border border-[#00ff66]/35 bg-zinc-950/95 shadow-[0_0_0_1px_rgba(0,255,102,0.08),0_18px_60px_rgba(0,255,102,0.10)]">
+                <div className="h-1 w-full bg-gradient-to-r from-[#00ff66] via-sky-400 to-[#00ff66]" />
+                <div className="bg-gradient-to-br from-[#00ff66]/14 via-zinc-950/96 to-zinc-950 p-6 md:p-7">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-6">
+                    <div>
+                      <h4 className="text-[#00ff66] font-bold text-sm uppercase tracking-[0.2em] mb-2">
+                        HackerRank Verified Certificates
+                      </h4>
+                      <p className="text-sm text-zinc-200 max-w-2xl leading-relaxed">
+                        9 verified certificates surfaced directly from your HackerRank profile, with the blue role certificates shown first and every credential linked individually.
+                      </p>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {roleCertificates.map((cert) => (
-                        <a
-                          key={cert.url}
-                          href={cert.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="group rounded-2xl bg-sky-500/10 border border-sky-500/20 p-4 hover:border-sky-400/50 hover:bg-sky-500/15 transition-all"
-                        >
-                          <Award className="w-6 h-6 text-sky-400 mb-3" />
-                          <div className="text-[11px] font-mono text-sky-300 break-all mb-2">
-                            {cert.fileName}
-                          </div>
-                          <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <h5 className="text-white text-sm font-semibold group-hover:text-sky-300 transition-colors">
-                                {cert.title}
-                              </h5>
-                              <p className="text-xs text-zinc-400 mt-1">Verified role certificate</p>
-                            </div>
-                            <ExternalLink className="w-4 h-4 text-sky-300 shrink-0 mt-0.5" />
-                          </div>
-                        </a>
-                      ))}
-                    </div>
+                    <a
+                      href="https://www.hackerrank.com/profile/evanh720"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 text-sm text-[#00ff66] hover:text-white transition-colors"
+                    >
+                      View HackerRank Profile <ExternalLink className="w-4 h-4" />
+                    </a>
                   </div>
 
-                  <div>
-                    <div className="text-[11px] uppercase tracking-[0.25em] text-[#00ff66] font-bold mb-3">
-                      Skill Certificates
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {skillCertificates.map((cert) => (
-                        <a
-                          key={cert.url}
-                          href={cert.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="group rounded-2xl bg-zinc-900/80 border border-zinc-800 p-4 hover:border-[#00ff66]/40 hover:bg-[#00ff66]/5 transition-all"
-                        >
-                          <FileText className="w-6 h-6 text-[#00ff66] mb-3" />
-                          <div className="text-[11px] font-mono text-[#8cffbf] break-all mb-2">
-                            {cert.fileName}
-                          </div>
-                          <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <h5 className="text-white text-sm font-semibold group-hover:text-[#00ff66] transition-colors">
-                                {cert.title}
-                              </h5>
-                              <p className="text-xs text-zinc-500 mt-1">Verified skill certificate</p>
+                  <div className="space-y-6">
+                    <div>
+                      <div className="text-[11px] uppercase tracking-[0.25em] text-sky-400 font-bold mb-3">
+                        Role Certificates
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {roleCertificates.map((cert) => (
+                          <a
+                            key={cert.url}
+                            href={cert.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group rounded-2xl bg-sky-500/12 border border-sky-400/35 p-4 shadow-[0_10px_30px_rgba(14,165,233,0.08)] hover:border-sky-300/70 hover:bg-sky-500/18 transition-all"
+                          >
+                            <Award className="w-6 h-6 text-sky-300 mb-3" />
+                            <div className="text-[11px] font-mono text-sky-200 break-all mb-2">
+                              {cert.fileName}
                             </div>
-                            <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-[#00ff66] shrink-0 mt-0.5 transition-colors" />
-                          </div>
-                        </a>
-                      ))}
+                            <div className="flex items-start justify-between gap-3">
+                              <div>
+                                <h5 className="text-white text-sm font-semibold group-hover:text-sky-200 transition-colors">
+                                  {cert.title}
+                                </h5>
+                                <p className="text-xs text-zinc-300 mt-1">Verified role certificate</p>
+                              </div>
+                              <ExternalLink className="w-4 h-4 text-sky-300 shrink-0 mt-0.5" />
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="text-[11px] uppercase tracking-[0.25em] text-[#00ff66] font-bold mb-3">
+                        Skill Certificates
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {skillCertificates.map((cert) => (
+                          <a
+                            key={cert.url}
+                            href={cert.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group rounded-2xl bg-zinc-900 border border-[#00ff66]/20 p-4 shadow-[0_10px_30px_rgba(0,255,102,0.05)] hover:border-[#00ff66]/55 hover:bg-[#00ff66]/10 transition-all"
+                          >
+                            <FileText className="w-6 h-6 text-[#00ff66] mb-3" />
+                            <div className="text-[11px] font-mono text-[#b8ffd6] break-all mb-2">
+                              {cert.fileName}
+                            </div>
+                            <div className="flex items-start justify-between gap-3">
+                              <div>
+                                <h5 className="text-white text-sm font-semibold group-hover:text-[#7dffaf] transition-colors">
+                                  {cert.title}
+                                </h5>
+                                <p className="text-xs text-zinc-300 mt-1">Verified skill certificate</p>
+                              </div>
+                              <ExternalLink className="w-4 h-4 text-zinc-400 group-hover:text-[#00ff66] shrink-0 mt-0.5 transition-colors" />
+                            </div>
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
