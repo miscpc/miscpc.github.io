@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 const cases = [
   {
@@ -37,10 +37,6 @@ export const CaseStudies = () => {
           transition={{ delay: idx * 0.1 }}
           className="group relative bg-zinc-900 border border-zinc-800 rounded-3xl p-8 hover:border-emerald-500/50 transition-all overflow-hidden"
         >
-          <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-100 transition-opacity">
-            <ExternalLink className="w-6 h-6 text-emerald-500" />
-          </div>
-          
           <div className="mb-6">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-500 mb-2 block">
               {item.client}
