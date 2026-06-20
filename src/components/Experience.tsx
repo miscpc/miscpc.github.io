@@ -1,49 +1,16 @@
 import { motion } from 'framer-motion';
+import { LocaleContent } from '../content';
 
-const experiences = [
-  {
-    company: 'Ville de Montréal',
-    role: 'Consultant / System Administrator',
-    period: '2011 – April 2026',
-    description: 'System Administrator for Municipal, Electoral, Business & Professional Clients. Creating systems that eliminate problems. Expert in Windows, Linux, BSD, and VoIP (Cisco, Asterisk). Managed workflow compliance (PCI) and complex hardware infrastructure.',
-    highlights: ['Electoral Systems', 'VOIP Specialist', 'PCI Compliance']
-  },
-  {
-    company: 'Kontego Networks',
-    role: 'System Administrator / R&D',
-    period: 'Jul – Oct 2011',
-    description: 'R&D for an ISP. Migrated servers to DMZ model. Clustered PostgreSQL and implemented NFS bootable systems. Worked with Cisco AS5300 and various clustering technologies (Xen, OpenStack).',
-    highlights: ['ISP R&D', 'PostgreSQL Clustering', 'DMZ Migration']
-  },
-  {
-    company: 'Ajilon',
-    role: 'System Analyst',
-    period: 'Jul 2009 – Jul 2011',
-    description: 'Virtualized servers for Target Corp. Scripted task-automation utilities and debugged builds. Escalated complex issues across server teams as assistant supervisor.',
-    highlights: ['Target Corp Project', 'Automation Scripting', 'Virtualization']
-  },
-  {
-    company: 'EVO Canada',
-    role: 'Senior Technical Consultant / SysAdmin',
-    period: 'Aug – Dec 2009',
-    description: 'Sole IT manager for 125 staff + 40 remote agents. Implemented Cisco ASA, VPNs, and Kantech access systems. Solutions Architect and Workflow Manager.',
-    highlights: ['Sole IT Manager', 'Cisco ASA', 'Solutions Architecture']
-  },
-  {
-    company: 'Orderin',
-    role: 'Director of Information Technology',
-    period: '2005 – 2007',
-    description: 'Scaled company from 2 to 100+ employees. Managed entire IT stack including Gentoo firewalls, Asterisk VoIP, and SEO. Achieved Director level at age 20.',
-    highlights: ['Grew Company 50x', 'Infrastructure Scaling', 'Director at 20']
-  }
-];
+interface ExperienceProps {
+  items: LocaleContent['experienceSection']['items'];
+}
 
-export const Experience = () => {
+export const Experience = ({ items }: ExperienceProps) => {
   return (
     <div className="relative border-l border-zinc-800 ml-4 md:ml-6 space-y-12">
-      {experiences.map((exp, idx) => (
+      {items.map((exp, idx) => (
         <motion.div
-          key={idx}
+          key={`${exp.company}-${exp.role}`}
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -60,13 +27,14 @@ export const Experience = () => {
               {exp.period}
             </span>
           </div>
-          <p className="text-zinc-400 mb-4 max-w-3xl leading-relaxed">
-            {exp.description}
-          </p>
+          <p className="text-zinc-400 mb-4 max-w-3xl leading-relaxed">{exp.description}</p>
           <div className="flex flex-wrap gap-2">
-            {exp.highlights.map((h, i) => (
-              <span key={i} className="text-[10px] uppercase tracking-wider font-bold text-zinc-500 bg-zinc-800/30 px-2 py-0.5 rounded">
-                {h}
+            {exp.highlights.map((highlight) => (
+              <span
+                key={highlight}
+                className="text-[10px] uppercase tracking-wider font-bold text-zinc-500 bg-zinc-800/30 px-2 py-0.5 rounded"
+              >
+                {highlight}
               </span>
             ))}
           </div>
