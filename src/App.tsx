@@ -1,22 +1,12 @@
+import { useEffect, useMemo, useState } from 'react';
+import { ArrowUpRight, Award, Code2, Cpu, ExternalLink, FileText, MessageSquare, ShieldCheck, Target, Users, Zap } from 'lucide-react';
+import { appContent, detectLocale, Locale } from './content';
+import { CaseStudies } from './components/CaseStudies';
+import { ConstellationBackground } from './components/ConstellationBackground';
+import { Experience } from './components/Experience';
 import { Hero } from './components/Hero';
 import { Section } from './components/Section';
 import { Skills } from './components/Skills';
-import { Experience } from './components/Experience';
-import { CaseStudies } from './components/CaseStudies';
-import { ConstellationBackground } from './components/ConstellationBackground';
-import { 
-  ShieldCheck, 
-  Target, 
-  Zap, 
-  Code2, 
-  Cpu, 
-  Users, 
-  MessageSquare,
-  ArrowUpRight,
-  Award,
-  ExternalLink,
-  FileText
-} from 'lucide-react';
 
 const roleCertificates = [
   {
@@ -70,6 +60,14 @@ const skillCertificates = [
 ];
 
 const App = () => {
+  const [locale] = useState<Locale>(detectLocale);
+  const content = useMemo(() => appContent[locale], [locale]);
+
+  useEffect(() => {
+    document.documentElement.lang = content.meta.lang;
+    document.title = content.meta.title;
+  }, [content]);
+
   return (
     <div className="relative min-h-screen bg-[#050505] text-zinc-300 selection:bg-emerald-500/30 selection:text-emerald-200 overflow-x-hidden">
       <ConstellationBackground />
@@ -80,20 +78,20 @@ const App = () => {
             EH<span className="text-emerald-500">.</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            {['About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`} 
+            {content.nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
                 className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
               >
-                {item}
+                {item.label}
               </a>
             ))}
             <a
               href="#contact"
               className="px-4 py-1.5 rounded-full bg-white text-black text-sm font-semibold hover:bg-emerald-500 transition-colors"
             >
-              Hire Me
+              {content.hireMe}
             </a>
           </div>
         </nav>
@@ -101,35 +99,38 @@ const App = () => {
 
       <main className="relative z-10">
         <Section id="home" className="pt-0">
-          <Hero />
+          <Hero content={content.hero} terminal={content.terminal} />
         </Section>
 
-        <Section 
-          id="about" 
-          subtitle="The Profile" 
-          title="Root Cause Resolution Engineering"
+        <Section
+          id="about"
+          subtitle={content.about.subtitle}
+          title={content.about.title}
           className="bg-zinc-900/30"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-2 space-y-6">
               <p className="text-xl text-zinc-300 leading-relaxed">
-                A results-driven IT professional with over <span className="text-[#00ff66] font-bold">20 years</span> of hands-on experience. 
-                When no solution is found, I fix the problem by ensuring the root cause is identified and eliminated.
+                {locale === 'fr' ? (
+                  <>
+                    Professionnel TI axé sur les résultats avec plus de <span className="text-[#00ff66] font-bold">20 ans</span> d'expérience terrain. Quand aucune solution n'existe, je règle le problème en identifiant et en éliminant la cause racine.
+                  </>
+                ) : (
+                  <>
+                    A results-driven IT professional with over <span className="text-[#00ff66] font-bold">20 years</span> of hands-on experience. When no solution is found, I fix the problem by ensuring the root cause is identified and eliminated.
+                  </>
+                )}
               </p>
-              <p className="text-zinc-400 leading-relaxed">
-                I engineer solutions supporting the full technology stack — from bare-metal infrastructure to cloud-native deployments and AI integration. 
-                My expertise spans datacenters, clusters, multi-system administration, network engineering, and cybersecurity. 
-                I specialize in high-availability systems, DevOps automation, and AI-augmented workflows.
-              </p>
-              
+              <p className="text-zinc-400 leading-relaxed">{content.about.body}</p>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
                 {[
-                  { icon: <ShieldCheck className="w-5 h-5" />, title: 'Security First', desc: 'PCI compliance & hardened infra' },
-                  { icon: <Target className="w-5 h-5" />, title: 'Root Cause', desc: 'Eliminating recurring issues' },
-                  { icon: <Zap className="w-5 h-5" />, title: 'Automation', desc: 'DevOps & smart workflows' },
-                  { icon: <Cpu className="w-5 h-5" />, title: 'AI Integration', desc: 'Modernizing legacy stacks' },
-                ].map((item, i) => (
-                  <div key={i} className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50 flex gap-4">
+                  { icon: <ShieldCheck className="w-5 h-5" />, ...content.about.pillars[0] },
+                  { icon: <Target className="w-5 h-5" />, ...content.about.pillars[1] },
+                  { icon: <Zap className="w-5 h-5" />, ...content.about.pillars[2] },
+                  { icon: <Cpu className="w-5 h-5" />, ...content.about.pillars[3] },
+                ].map((item) => (
+                  <div key={item.title} className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50 flex gap-4">
                     <div className="text-[#00ff66] shrink-0">{item.icon}</div>
                     <div>
                       <h4 className="font-semibold text-white text-sm">{item.title}</h4>
@@ -143,10 +144,10 @@ const App = () => {
                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-6">
                   <div>
                     <h4 className="text-[#00ff66] font-bold text-sm uppercase tracking-[0.2em] mb-2">
-                      HackerRank Verified Certificates
+                      {content.about.certificatesTitle}
                     </h4>
                     <p className="text-sm text-zinc-300 max-w-2xl leading-relaxed">
-                      9 verified certificates surfaced directly from your HackerRank profile, with the blue role certificates shown first and every credential linked individually.
+                      {content.about.certificatesDescription}
                     </p>
                   </div>
                   <a
@@ -155,14 +156,14 @@ const App = () => {
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 text-sm text-[#00ff66] hover:text-white transition-colors"
                   >
-                    View HackerRank Profile <ExternalLink className="w-4 h-4" />
+                    {content.about.viewProfile} <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
 
                 <div className="space-y-6">
                   <div>
                     <div className="text-[11px] uppercase tracking-[0.25em] text-sky-400 font-bold mb-3">
-                      Role Certificates
+                      {content.about.roleCertificates}
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {roleCertificates.map((cert) => (
@@ -174,15 +175,13 @@ const App = () => {
                           className="group rounded-2xl bg-sky-500/10 border border-sky-500/20 p-4 hover:border-sky-400/50 hover:bg-sky-500/15 transition-all"
                         >
                           <Award className="w-6 h-6 text-sky-400 mb-3" />
-                          <div className="text-[11px] font-mono text-sky-300 break-all mb-2">
-                            {cert.fileName}
-                          </div>
+                          <div className="text-[11px] font-mono text-sky-300 break-all mb-2">{cert.fileName}</div>
                           <div className="flex items-start justify-between gap-3">
                             <div>
                               <h5 className="text-white text-sm font-semibold group-hover:text-sky-300 transition-colors">
                                 {cert.title}
                               </h5>
-                              <p className="text-xs text-zinc-400 mt-1">Verified role certificate</p>
+                              <p className="text-xs text-zinc-400 mt-1">{content.about.roleCertificateLabel}</p>
                             </div>
                             <ExternalLink className="w-4 h-4 text-sky-300 shrink-0 mt-0.5" />
                           </div>
@@ -193,7 +192,7 @@ const App = () => {
 
                   <div>
                     <div className="text-[11px] uppercase tracking-[0.25em] text-[#00ff66] font-bold mb-3">
-                      Skill Certificates
+                      {content.about.skillCertificates}
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                       {skillCertificates.map((cert) => (
@@ -205,15 +204,13 @@ const App = () => {
                           className="group rounded-2xl bg-zinc-900/80 border border-zinc-800 p-4 hover:border-[#00ff66]/40 hover:bg-[#00ff66]/5 transition-all"
                         >
                           <FileText className="w-6 h-6 text-[#00ff66] mb-3" />
-                          <div className="text-[11px] font-mono text-[#8cffbf] break-all mb-2">
-                            {cert.fileName}
-                          </div>
+                          <div className="text-[11px] font-mono text-[#8cffbf] break-all mb-2">{cert.fileName}</div>
                           <div className="flex items-start justify-between gap-3">
                             <div>
                               <h5 className="text-white text-sm font-semibold group-hover:text-[#00ff66] transition-colors">
                                 {cert.title}
                               </h5>
-                              <p className="text-xs text-zinc-500 mt-1">Verified skill certificate</p>
+                              <p className="text-xs text-zinc-500 mt-1">{content.about.skillCertificateLabel}</p>
                             </div>
                             <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-[#00ff66] shrink-0 mt-0.5 transition-colors" />
                           </div>
@@ -224,40 +221,32 @@ const App = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="space-y-6">
               <div className="p-6 rounded-2xl bg-[#00ff66]/5 border border-[#00ff66]/15">
                 <h4 className="text-white font-bold mb-4 flex items-center gap-2">
                   <Code2 className="w-4 h-4 text-[#00ff66]" />
-                  Technical Focus
+                  {content.about.technicalFocusTitle}
                 </h4>
                 <div className="space-y-4">
-                  {[
-                    { label: 'System Admin', value: 100 },
-                    { label: 'Network Eng.', value: 95 },
-                    { label: 'DevOps', value: 90 },
-                    { label: 'AI/R&D', value: 85 },
-                  ].map((stat) => (
+                  {content.about.technicalFocus.map((stat) => (
                     <div key={stat.label}>
                       <div className="flex justify-between text-xs mb-1.5">
                         <span className="text-zinc-400">{stat.label}</span>
                         <span className="text-[#00ff66]">{stat.value}%</span>
                       </div>
                       <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-[#00ff66] rounded-full" 
-                          style={{ width: `${stat.value}%` }} 
-                        />
+                        <div className="h-full bg-[#00ff66] rounded-full" style={{ width: `${stat.value}%` }} />
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-              
+
               <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                <h4 className="text-white font-bold mb-4">Core Principles</h4>
+                <h4 className="text-white font-bold mb-4">{content.about.corePrinciplesTitle}</h4>
                 <ul className="space-y-3">
-                  {['No Band-aid Solutions', 'Scalability by Design', 'Security at the Edge', 'Workflow Optimization'].map((item) => (
+                  {content.about.corePrinciples.map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-zinc-400">
                       <div className="w-1 h-1 rounded-full bg-[#00ff66]" />
                       {item}
@@ -267,26 +256,24 @@ const App = () => {
               </div>
 
               <div className="p-6 rounded-2xl bg-[#00ff66]/10 border border-[#00ff66]/20">
-                <h4 className="text-[#00ff66] font-bold mb-2 text-sm">HackerRank Certified</h4>
-                <p className="text-xs text-zinc-300 leading-relaxed mb-3">
-                  9 verified certificates total — 2 blue role certifications first, followed by 7 direct skill certificate links below.
-                </p>
+                <h4 className="text-[#00ff66] font-bold mb-2 text-sm">{content.about.hackerRankCardTitle}</h4>
+                <p className="text-xs text-zinc-300 leading-relaxed mb-3">{content.about.hackerRankCardDescription}</p>
                 <a
                   href="https://www.hackerrank.com/profile/evanh720"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 text-xs text-[#00ff66] hover:text-white transition-colors"
                 >
-                  Open full profile <ExternalLink className="w-3.5 h-3.5" />
+                  {content.about.openFullProfile} <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
 
               <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                <h4 className="text-white font-bold mb-3 text-sm">Communication</h4>
+                <h4 className="text-white font-bold mb-3 text-sm">{content.about.communicationTitle}</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['English (Fluent)', 'French (Fluent)', 'Technical Systems'].map((lang) => (
-                    <span key={lang} className="text-[10px] bg-zinc-800 text-zinc-400 px-2 py-1 rounded border border-zinc-700">
-                      {lang}
+                  {content.about.communicationTags.map((tag) => (
+                    <span key={tag} className="text-[10px] bg-zinc-800 text-zinc-400 px-2 py-1 rounded border border-zinc-700">
+                      {tag}
                     </span>
                   ))}
                 </div>
@@ -295,23 +282,26 @@ const App = () => {
           </div>
         </Section>
 
-        <Section id="skills" subtitle="Expertise" title="36 Verified Aptitude Skills">
-          <Skills />
+        <Section id="skills" subtitle={content.skillsSection.subtitle} title={content.skillsSection.title}>
+          <Skills categories={content.skillsSection.categories} />
         </Section>
 
-        <Section id="projects" subtitle="Proven Solutions" title="Featured Case Studies">
-          <CaseStudies />
+        <Section id="projects" subtitle={content.projectsSection.subtitle} title={content.projectsSection.title}>
+          <CaseStudies cases={content.projectsSection.cases} />
         </Section>
 
-        <Section id="specialties" subtitle="Beyond the Screen" title="Hardware & Specialized Systems" className="bg-zinc-900/30">
+        <Section
+          id="specialties"
+          subtitle={content.specialtiesSection.subtitle}
+          title={content.specialtiesSection.title}
+          className="bg-zinc-900/30"
+        >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { title: 'Data Centers', desc: 'Rack servers, QoS, & Networking' },
-              { title: 'Electronics', desc: 'Arcade machines, kiosks, & consoles' },
-              { title: 'IOT & Security', desc: 'Cameras, access control, & sensors' },
-              { title: 'Mobile Dev', desc: 'iOS, Android, & Legacy platforms' }
-            ].map((item, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 text-center group hover:bg-emerald-500/5 transition-colors">
+            {content.specialtiesSection.items.map((item) => (
+              <div
+                key={item.title}
+                className="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 text-center group hover:bg-emerald-500/5 transition-colors"
+              >
                 <h4 className="text-white font-bold mb-2">{item.title}</h4>
                 <p className="text-xs text-zinc-500">{item.desc}</p>
               </div>
@@ -319,71 +309,73 @@ const App = () => {
           </div>
         </Section>
 
-        <Section id="experience" subtitle="The Journey" title="Experience & Impact" className="bg-zinc-900/30">
-          <Experience />
+        <Section
+          id="experience"
+          subtitle={content.experienceSection.subtitle}
+          title={content.experienceSection.title}
+          className="bg-zinc-900/30"
+        >
+          <Experience items={content.experienceSection.items} />
         </Section>
 
-        <Section id="contact" subtitle="Get In Touch" title="Available for Consulting">
+        <Section id="contact" subtitle={content.contactSection.subtitle} title={content.contactSection.title}>
           <div className="max-w-4xl mx-auto bg-zinc-900 rounded-3xl p-8 md:p-12 border border-zinc-800 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px] -mr-32 -mt-32" />
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
               <div>
-                <h3 className="text-2xl font-bold text-white mb-6">Let's discuss your next infrastructure challenge.</h3>
-                <p className="text-zinc-400 mb-8">
-                  Whether it's scaling a startup from 2 to 100 employees or optimizing municipal-level IT systems, I deliver results that last.
-                </p>
+                <h3 className="text-2xl font-bold text-white mb-6">{content.contactSection.heading}</h3>
+                <p className="text-zinc-400 mb-8">{content.contactSection.body}</p>
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 text-zinc-300">
                     <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center">
                       <MessageSquare className="w-5 h-5 text-emerald-500" />
                     </div>
-                    <span>Consulting / Full-time</span>
+                    <span>{content.contactSection.badges[0]}</span>
                   </div>
                   <div className="flex items-center gap-4 text-zinc-300">
                     <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center">
                       <Users className="w-5 h-5 text-emerald-500" />
                     </div>
-                    <span>Greater Montreal / Remote</span>
+                    <span>{content.contactSection.badges[1]}</span>
                   </div>
                 </div>
               </div>
-              
-              <form
-                action="https://formspree.io/f/mqevzkbr"
-                method="POST"
-                className="space-y-4"
-              >
-                <input type="hidden" name="_subject" value="New website contact form message" />
+
+              <form action="https://formspree.io/f/mqevzkbr" method="POST" className="space-y-4">
+                <input type="hidden" name="_subject" value={content.contactSection.subject} />
                 <div>
-                  <input 
+                  <input
                     name="name"
-                    type="text" 
-                    placeholder="Your Name"
+                    type="text"
+                    placeholder={content.contactSection.namePlaceholder}
                     required
                     className="w-full bg-zinc-800/50 border border-zinc-700 rounded-xl px-4 py-3 text-zinc-200 focus:outline-none focus:border-emerald-500 transition-colors"
                   />
                 </div>
                 <div>
-                  <input 
+                  <input
                     name="email"
-                    type="email" 
-                    placeholder="Your Email"
+                    type="email"
+                    placeholder={content.contactSection.emailPlaceholder}
                     required
                     className="w-full bg-zinc-800/50 border border-zinc-700 rounded-xl px-4 py-3 text-zinc-200 focus:outline-none focus:border-emerald-500 transition-colors"
                   />
                 </div>
                 <div>
-                  <textarea 
+                  <textarea
                     name="message"
-                    placeholder="Your Message"
+                    placeholder={content.contactSection.messagePlaceholder}
                     rows={4}
                     required
                     className="w-full bg-zinc-800/50 border border-zinc-700 rounded-xl px-4 py-3 text-zinc-200 focus:outline-none focus:border-emerald-500 transition-colors resize-none"
                   />
                 </div>
-                <button type="submit" className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-xl transition-all flex items-center justify-center gap-2">
-                  Send Message <ArrowUpRight className="w-4 h-4" />
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-xl transition-all flex items-center justify-center gap-2"
+                >
+                  {content.contactSection.submit} <ArrowUpRight className="w-4 h-4" />
                 </button>
               </form>
             </div>
@@ -393,7 +385,7 @@ const App = () => {
 
       <footer className="relative z-10 py-12 border-t border-zinc-800/50 text-center">
         <div className="text-zinc-500 text-sm">
-          © {new Date().getFullYear()} Evan Hopkins. All rights reserved. Built with precision.
+          © {new Date().getFullYear()} Evan Hopkins. {content.footer}
         </div>
       </footer>
     </div>
