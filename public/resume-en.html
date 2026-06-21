@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evan Hopkins - Resume (English)</title>
+  <style>
+    :root {
+      --text: #111111;
+      --muted: #4a4a4a;
+      --line: #cfcfcf;
+      --line-strong: #7a7a7a;
+      --paper: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: #f3f3f3; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--paper);
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 24px auto;
+      padding: 36px 40px 48px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    header {
+      border-bottom: 2px solid var(--line-strong);
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .contact a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 26px;
+    }
+
+    section {
+      margin-top: 20px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      padding-bottom: 6px;
+      font-size: 0.98rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.96rem;
+    }
+
+    .stack > * + * { margin-top: 14px; }
+
+    .role {
+      margin-top: 14px;
+      page-break-inside: avoid;
+    }
+
+    .role-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .role-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .company {
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .period {
+      color: var(--muted);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+
+    li {
+      margin: 4px 0;
+      font-size: 0.94rem;
+    }
+
+    .compact li { margin: 3px 0; }
+
+    .cert-list,
+    .skill-list,
+    .meta-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .cert-list li,
+    .skill-list li,
+    .meta-list li {
+      margin: 0;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cert-list li:last-child,
+    .skill-list li:last-child,
+    .meta-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .cert-list a {
+      color: inherit;
+      text-decoration: underline;
+      word-break: break-word;
+    }
+
+    .filename {
+      display: block;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 2px;
+    }
+
+    .two-col-list {
+      columns: 2;
+      column-gap: 24px;
+      margin-left: 18px;
+    }
+
+    .two-col-list li {
+      break-inside: avoid;
+    }
+
+    .small { font-size: 0.9rem; color: var(--muted); }
+
+    .print-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    @page {
+      size: auto;
+      margin: 0.55in;
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        margin: 0;
+        padding: 24px 20px 36px;
+        box-shadow: none;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col-list {
+        columns: 1;
+      }
+    }
+
+    @media print {
+      html, body {
+        background: #fff;
+      }
+
+      .page {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Evan Hopkins</h1>
+      <div class="subtitle">Solution Master · Senior Systems Administrator · AI Integration Specialist</div>
+      <div class="contact">
+        <span>Montreal, Quebec, Canada</span>
+        <a href="https://www.linkedin.com/in/evan-hopkins-329237a3/">LinkedIn</a>
+        <a href="https://www.hackerrank.com/profile/evanh720">HackerRank</a>
+        <a href="https://github.com/miscpc">GitHub</a>
+        <a href="https://miscpc.github.io/">Portfolio</a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main>
+        <section>
+          <h2>Professional Summary</h2>
+          <p>
+            Results-driven IT professional with 20+ years of hands-on experience across the full technology stack — from bare-metal
+            infrastructure to cloud-native deployments and AI integration. Proven expertise in Linux and Windows administration,
+            network engineering, cybersecurity, DevOps automation, VoIP, virtualization, and operational troubleshooting.
+            Actively delivering AI-augmented workflows, intelligent monitoring, and root-cause-driven solution architecture.
+          </p>
+        </section>
+
+        <section>
+          <h2>Professional Experience</h2>
+
+          <div class="role">
+            <div class="role-head">
+              <div>
+                <div class="role-title">Senior IT Consultant · AI Solutions & Integration Specialist</div>
+                <div class="company">Ville de Montréal</div>
+              </div>
+              <div class="period">2011 – April 2026</div>
+            </div>
+            <ul>
+              <li>Designed and supported enterprise infrastructure across Linux, Unix, Solaris, BSD, Windows, and specialized platforms.</li>
+              <li>Delivered LLM-assisted automation, intelligent monitoring pipelines, and AI-augmented operational workflows.</li>
+              <li>Managed hypervisors and virtualization stacks including VMware ESXi/vSphere, Hyper-V, XenServer, KVM, QEMU, AWS Nitro, Google KVM, and Azure Hypervisor.</li>
+              <li>Led security hardening, intrusion analysis, penetration testing, firewall design, and PCI DSS / compliance-oriented workflows.</li>
+              <li>Built and maintained VoIP and server environments using SIP, Asterisk, Trixbox, Grandstream, Cisco, Freeswitch, DNS, DMZ, DHCP, VPN, Apache, and MySQL.</li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="role-head">
+              <div>
+                <div class="role-title">System Administrator / R&amp;D Engineer</div>
+                <div class="company">Kontego Networks</div>
+              </div>
+              <div class="period">July 2011 – October 2011</div>
+            </div>
+            <ul>
+              <li>Migrated public-facing servers to a secured DMZ model.</li>
+              <li>Clustered PostgreSQL infrastructure and implemented NFS-bootable systems for rapid recovery.</li>
+              <li>Worked on OpenStack/Xen clustering and Freeswitch telephony integration with Cisco AS5300.</li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="role-head">
+              <div>
+                <div class="role-title">System Analyst</div>
+                <div class="company">Ajilon (Target Corp.)</div>
+              </div>
+              <div class="period">July 2009 – July 2011</div>
+            </div>
+            <ul>
+              <li>Virtualized enterprise server infrastructure for a large-scale retail environment.</li>
+              <li>Built automation utilities and debugged complex builds.</li>
+              <li>Acted as assistant supervisor for escalations across server teams.</li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="role-head">
+              <div>
+                <div class="role-title">Senior Technical Consultant / Systems Administrator</div>
+                <div class="company">EVO Canada</div>
+              </div>
+              <div class="period">August 2009 – December 2009</div>
+            </div>
+            <ul>
+              <li>Sole IT manager for 125 staff and 40 remote agents.</li>
+              <li>Implemented Cisco ASA, VPNs, WAN connectivity, and Kantech access-control systems.</li>
+              <li>Delivered infrastructure planning, workflow management, and staff training.</li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="role-head">
+              <div>
+                <div class="role-title">Linux Administrator · NOC</div>
+                <div class="company">Softvoyage</div>
+              </div>
+              <div class="period">June 2008 – May 2009</div>
+            </div>
+            <ul>
+              <li>Provided 24/7 monitoring and incident response across production Linux infrastructure.</li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="role-head">
+              <div>
+                <div class="role-title">Technical Support Representative</div>
+                <div class="company">CSC — Computer Sciences Corp.</div>
+              </div>
+              <div class="period">April 2008 – June 2008</div>
+            </div>
+            <ul>
+              <li>Achieved a perfect score on the EATON assessment and led the team in resolution-to-time performance.</li>
+              <li>Trained new hires and accelerated onboarding quality.</li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="role-head">
+              <div>
+                <div class="role-title">Director of Information Technology</div>
+                <div class="company">Orderin</div>
+              </div>
+              <div class="period">January 2005 – December 2007</div>
+            </div>
+            <ul>
+              <li>Scaled company infrastructure from 2 to 100+ employees.</li>
+              <li>Managed Gentoo firewalls, OpenVPN, Asterisk / TRIXBOX, Grandstream VoIP deployments, SharePoint, BES, Nortel PBX, and SEO support.</li>
+              <li>Served as sole IT manager and full-stack technical lead.</li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="role-head">
+              <div>
+                <div class="role-title">Senior Technician</div>
+                <div class="company">Netchamp</div>
+              </div>
+              <div class="period">July 2003 – January 2005</div>
+            </div>
+            <ul>
+              <li>Deployed 60 of 120 machines in a full network rollout and improved shell-replacement security hardening.</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <aside class="stack">
+        <section>
+          <h2>HackerRank Certificates</h2>
+          <ul class="cert-list compact">
+            <li><a href="https://www.hackerrank.com/certificates/d7c56cab142f">Frontend Developer (React)</a><span class="filename">frontend-developer-react.pdf</span></li>
+            <li><a href="https://www.hackerrank.com/certificates/a8cf9e91b741">Software Engineer</a><span class="filename">software-engineer.pdf</span></li>
+            <li><a href="https://www.hackerrank.com/certificates/e39a1ae30201">Problem Solving (Basic)</a><span class="filename">problem-solving-basic.pdf</span></li>
+            <li><a href="https://www.hackerrank.com/certificates/226bf09ed897">SQL (Advanced)</a><span class="filename">sql-advanced.pdf</span></li>
+            <li><a href="https://www.hackerrank.com/certificates/f3ad0148db4e">SQL (Intermediate)</a><span class="filename">sql-intermediate.pdf</span></li>
+            <li><a href="https://www.hackerrank.com/certificates/c2dd536232d3">SQL (Basic)</a><span class="filename">sql-basic.pdf</span></li>
+            <li><a href="https://www.hackerrank.com/certificates/5bc9451ebcd0">JavaScript (Intermediate)</a><span class="filename">javascript-intermediate.pdf</span></li>
+            <li><a href="https://www.hackerrank.com/certificates/5c101dfd26cf">JavaScript (Basic)</a><span class="filename">javascript-basic.pdf</span></li>
+            <li><a href="https://www.hackerrank.com/certificates/f9034a8a19bd">Angular (Intermediate)</a><span class="filename">angular-intermediate.pdf</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Core Expertise</h2>
+          <ul class="skill-list compact">
+            <li>AI / LLM integration and intelligent workflow automation</li>
+            <li>Linux, Unix, BSD, and Windows server administration</li>
+            <li>Cybersecurity, penetration testing, and firewall architecture</li>
+            <li>Virtualization and cloud platforms (VMware, Xen, KVM, AWS, Azure)</li>
+            <li>Network engineering, DNS, DHCP, DMZ, VPN, and QoS</li>
+            <li>VoIP, SIP, Asterisk, Freeswitch, Cisco, and Grandstream</li>
+            <li>DevOps automation, scripting, deployment, and rollback workflows</li>
+            <li>Database administration: MySQL Cluster, PostgreSQL, NFS clustering</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Selected Skills</h2>
+          <ul class="two-col-list compact">
+            <li>Linux</li>
+            <li>Windows Server</li>
+            <li>FreeBSD</li>
+            <li>System Administration</li>
+            <li>Cloud Infrastructure</li>
+            <li>Cisco Technologies</li>
+            <li>Firewalls</li>
+            <li>Cybersecurity</li>
+            <li>VMware</li>
+            <li>VirtualBox</li>
+            <li>OpenStack</li>
+            <li>Puppet</li>
+            <li>Bash / Shell</li>
+            <li>Python</li>
+            <li>Nagios</li>
+            <li>MySQL</li>
+            <li>PostgreSQL</li>
+            <li>Asterisk</li>
+            <li>FreeSwitch</li>
+            <li>Android Development</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Education</h2>
+          <p><strong>Collège de Montréal</strong></p>
+          <p class="small">Computer Science, B.Tech · 1998 – 2002 · 98%</p>
+          <p class="small">Completed coursework in robotics and programming.</p>
+        </section>
+
+        <section>
+          <h2>Languages</h2>
+          <ul class="meta-list compact">
+            <li>English — Fluent</li>
+            <li>French — Fluent</li>
+            <li>Spanish — Conversational</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <div class="print-note">
+      Printable version optimized for white paper and black-and-white output.
+    </div>
+  </div>
+</body>
+</html>
